@@ -1,0 +1,33 @@
+<h1>User#index</h1>
+
+<div class="js-user-feed">
+  <% @users.each do |user| %>
+    <div class="js-user">
+      <span>
+        <%= user.id %>
+      </span>
+      <span>
+        <%= user.name %>
+      </span>
+      <span>
+        <%= user.address %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="js-pagination">
+    <span class="js-pagination__next" href="<%= path_to_next_page @users%>"></span>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).on("ready page:load", function(){
+    $(".js-user-feed").infiniteScroll({
+      path: '.js-pagination__next',
+      append: '.js-user',
+      hideNav: '.js-pagination',
+      history: false
+    });
+  });
+</script>
